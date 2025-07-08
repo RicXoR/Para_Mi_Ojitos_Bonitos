@@ -50,20 +50,10 @@
     }
   </style>
 </head>
-  <script>
-  function playAudioOnFirstInteraction() {
-    const audio = document.getElementById('miAudio');
-    audio.play();
-    window.removeEventListener('click', playAudioOnFirstInteraction);
-    window.removeEventListener('touchstart', playAudioOnFirstInteraction);
-  }
-
-  window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
-  window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
-</script>
 <body>
 
-<audio id="Perfect.mp3" loop>
+<!-- AUDIO -->
+<audio id="miAudio" loop playsinline>
   <source src="Perfect.mp3" type="audio/mp3" />
 </audio>
 
@@ -221,6 +211,16 @@
     columns = Math.floor(width / (fontSize * 4));
     drops = new Array(columns).fill(1);
   });
+   // 🎵 Reproducir audio al primer toque
+  function playAudioOnFirstInteraction() {
+    const audio = document.getElementById('miAudio');
+    audio.play();
+    window.removeEventListener('click', playAudioOnFirstInteraction);
+    window.removeEventListener('touchstart', playAudioOnFirstInteraction);
+  }
+
+  window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
+  window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
 </script>
 </body>
 </html>
