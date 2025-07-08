@@ -211,23 +211,19 @@
     columns = Math.floor(width / (fontSize * 4));
     drops = new Array(columns).fill(1);
   });
-// 🎵 AUDIO: Reproducir en primer toque/clic (compatible con móviles)
-  function playAudioOnFirstInteraction() {
+ // Intentar reproducir audio al primer toque con manejo de error
+  function activarAudio() {
     const audio = document.getElementById('miAudio');
-    if (audio) {
-      audio.play().catch((e) => {
-        console.log("Audio no pudo iniciar:", e);
+    if (audio && audio.paused) {
+      audio.play().catch(err => {
+        console.log("No se pudo reproducir el audio:", err);
       });
     }
-
-    window.removeEventListener('click', playAudioOnFirstInteraction);
-    window.removeEventListener('touchstart', playAudioOnFirstInteraction);
-    window.removeEventListener('pointerdown', playAudioOnFirstInteraction);
   }
 
-  window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
-  window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
-  window.addEventListener('pointerdown', playAudioOnFirstInteraction, { once: true });
+  ['click', 'touchstart', 'pointerdown'].forEach(evt =>
+    window.addEventListener(evt, activarAudio, { once: true })
+  );
   </script>
 </body>
 </html>
