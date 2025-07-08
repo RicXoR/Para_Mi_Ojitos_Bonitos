@@ -52,9 +52,17 @@
 </head>
 <body>
 
-<audio autoplay loop playsinline>
-  <source src="Perfect.mp3" type="audio/mp3">
-</audio>
+<script>
+  function playAudioOnFirstInteraction() {
+    const audio = document.getElementById('miAudio');
+    audio.play();
+    window.removeEventListener('click', playAudioOnFirstInteraction);
+    window.removeEventListener('touchstart', playAudioOnFirstInteraction);
+  }
+
+  window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
+  window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
+</script>
 
 <canvas id="canvas"></canvas>
 
