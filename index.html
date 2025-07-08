@@ -50,13 +50,7 @@
     }
   </style>
 </head>
-<body>
-
-<audio id="Perfect.mp3" loop>
-  <source src="micancion.mp3" type="audio/mp3" />
-</audio>
-
-<script>
+  <script>
   function playAudioOnFirstInteraction() {
     const audio = document.getElementById('Perfect.mp3');
     audio.play();
@@ -67,6 +61,12 @@
   window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
   window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
 </script>
+<body>
+
+<audio id="Perfect.mp3" loop>
+  <source src="Perfect.mp3" type="audio/mp3" />
+</audio>
+
 <canvas id="canvas"></canvas>
 
 <div class="overlay">
