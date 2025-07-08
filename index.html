@@ -211,16 +211,23 @@
     columns = Math.floor(width / (fontSize * 4));
     drops = new Array(columns).fill(1);
   });
-   // 🎵 Reproducir audio al primer toque
+// 🎵 AUDIO: Reproducir en primer toque/clic (compatible con móviles)
   function playAudioOnFirstInteraction() {
     const audio = document.getElementById('miAudio');
-    audio.play();
+    if (audio) {
+      audio.play().catch((e) => {
+        console.log("Audio no pudo iniciar:", e);
+      });
+    }
+
     window.removeEventListener('click', playAudioOnFirstInteraction);
     window.removeEventListener('touchstart', playAudioOnFirstInteraction);
+    window.removeEventListener('pointerdown', playAudioOnFirstInteraction);
   }
 
   window.addEventListener('click', playAudioOnFirstInteraction, { once: true });
   window.addEventListener('touchstart', playAudioOnFirstInteraction, { once: true });
-</script>
+  window.addEventListener('pointerdown', playAudioOnFirstInteraction, { once: true });
+  </script>
 </body>
 </html>
